@@ -1,0 +1,49 @@
+  [1m[36m (0.4ms)[0m  [1mDROP DATABASE IF EXISTS `fbDemoApp_test`[0m
+  [1m[35m (0.2ms)[0m  CREATE DATABASE `fbDemoApp_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (101.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime, `location` varchar(255), `name` varchar(255), `oauth_token` varchar(255), `oauth_expires_at` datetime, `fid` varchar(255), `provider` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (192.0ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (185.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (97.5ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (208.8ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (40.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140110080507')[0m
+  [1m[35m (41.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140109090011')
+  [1m[36m (33.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140109072237')[0m
+  [1m[35m (33.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140109090622')
+  [1m[36m (33.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140110075923')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.4ms)[0m  [1mDROP DATABASE IF EXISTS `fbDemoApp_test`[0m
+  [1m[35m (0.3ms)[0m  CREATE DATABASE `fbDemoApp_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (127.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime, `location` varchar(255), `name` varchar(255), `oauth_token` varchar(255), `oauth_expires_at` datetime, `fid` varchar(255), `provider` varchar(255), `photo_file_name` varchar(255), `photo_content_type` varchar(255), `photo_file_size` int(11), `photo_updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (193.4ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (233.6ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (113.6ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (200.6ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (57.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140111102934')[0m
+  [1m[35m (49.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140109090011')
+  [1m[36m (49.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140109072237')[0m
+  [1m[35m (49.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140109090622')
+  [1m[36m (58.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140110080507')[0m
+  [1m[35m (49.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140110075923')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36m (0.4ms)[0m  [1mDROP DATABASE IF EXISTS `fbDemoApp_test`[0m
+  [1m[35m (0.2ms)[0m  CREATE DATABASE `fbDemoApp_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`
+  [1m[36m (116.0ms)[0m  [1mCREATE TABLE `follows` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `followable_id` int(11) NOT NULL, `followable_type` varchar(255) NOT NULL, `follower_id` int(11) NOT NULL, `follower_type` varchar(255) NOT NULL, `blocked` tinyint(1) DEFAULT 0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (250.4ms)[0m  CREATE INDEX `fk_followables` USING btree ON `follows` (`followable_id`, `followable_type`) 
+  [1m[36m (217.2ms)[0m  [1mCREATE INDEX `fk_follows` USING btree ON `follows` (`follower_id`, `follower_type`) [0m
+  [1m[35m (98.9ms)[0m  CREATE TABLE `relationships` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `follower_id` int(11), `followed_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (81.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime, `location` varchar(255), `name` varchar(255), `oauth_token` varchar(255), `oauth_expires_at` datetime, `fid` varchar(255), `provider` varchar(255), `photo_file_name` varchar(255), `photo_content_type` varchar(255), `photo_file_size` int(11), `photo_updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (193.6ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (233.8ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (113.8ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (208.9ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (40.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140113061430')[0m
+  [1m[35m (41.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140109090011')
+  [1m[36m (41.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140111102934')[0m
+  [1m[35m (41.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140109072237')
+  [1m[36m (41.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140109090622')[0m
+  [1m[35m (41.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20140110080507')
+  [1m[36m (41.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20140110075923')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
